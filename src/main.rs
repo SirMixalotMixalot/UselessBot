@@ -1,4 +1,4 @@
-//use std::env;
+use std::env;
 use reqwest;
 use serenity::{
     async_trait,
@@ -58,7 +58,7 @@ impl EventHandler for Handler {
 }
 #[tokio::main]
 async fn main() {
-    let mut client = Client::builder("Nzg3MjAyNDQ3OTA2ODMyNDE1.X9RhaQ.WfT9fonVHA7-XRoJ6O42-TRDG5I").event_handler(Handler).await.
+    let mut client = Client::builder(env::var("DISCORDTOKEN").unwrap()).event_handler(Handler).await.
     expect("Unable to set up client");
     if let Err(why) = client.start().await {
         println!("Client error {:?}",why)
